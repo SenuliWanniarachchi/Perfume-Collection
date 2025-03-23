@@ -488,5 +488,71 @@ function setupEventListeners() {
   });
 }
 
+// Show product modal
+function showProductModal(productId) {
+  let product;
+  let extraInfo;
+
+  if (productId >= 1 && productId <= 8) {
+      product = perfumes.find(p => p.id === productId);
+      extraInfo = { label: "Fragrance Notes", items: product?.notes };
+  } else if (productId >= 9 && productId <= 16) {
+      product = makeup.find(p => p.id === productId);
+      extraInfo = { label: "Available Shades", items: product?.shades };
+  } else if (productId >= 17 && productId <= 24) {
+      product = skincare.find(p => p.id === productId);
+      extraInfo = { label: "Key Benefits", items: product?.benefits };
+  } else if (productId >= 25 && productId <= 32) {
+      product = hair.find(p => p.id === productId);
+      extraInfo = { label: "Key Benefits", items: product?.benefits };
+  } else {
+      product = bath.find(p => p.id === productId);
+      extraInfo = { label: "Available Scents", items: product?.scents };
+  }
+
+  if (!product) return;
+
+  const modal = document.getElementById('product-modal');
+  const mainImage = document.getElementById('modal-main-image');
+  const thumbnails = document.querySelector('.thumbnail-images');
+  
+  mainImage.src = product.images[0];
+  document.getElementById('modal-title').textContent = product.name;
+  document.getElementById('modal-description').textContent = product.description;
+  document.getElementById('modal-price').textContent = `$${product.price}`;
+  
+  // Display extra information (notes, shades, benefits, or scents)
+  document.querySelector('.modal-details-list h4').textContent = extraInfo.label + ':';
+  document.getElementById('modal-notes').innerHTML = extraInfo.items
+      .map(item => `<span class="note-tag">${item}</span>`)
+      .join('');
+
+  // Display thumbnails
+  thumbnails.innerHTML = product.images
+      .map((img, index) => `
+          <div class="thumbnail ${index === 0 ? 'active' : ''}" data-src="${img}">
+              <img src="${img}" alt="Product thumbnail">
+          </div>
+      `).join('');
+
+  // Add thumbnail click handlers
+  document.querySelector('.thumbnail-images').addEventListener('click', (e) => {
+    const thumb = e.target.closest('.thumbnail');
+    if (thumb) {
+        const mainImage = document.getElementById('modal-main-image');
+        mainImage.src = thumb.dataset.src;
+        document.querySelectorAll('.thumbnail').forEach(t => t.classList.remove('active'));
+        thumb.classList.add('active');
+    }
+  });
+
+  //  modal add to cart button
+  const modalAddToCartBtn = document.getElementById('modal-add-to-cart');
+  modalAddToCartBtn.dataset.id = product.id;
+  modalAddToCartBtn.textContent = isInCart(product.id) ? 'Added to Cart' : 'Add to Cart';
+  modalAddToCartBtn.classList.toggle('added', isInCart(product.id));
+
+  modal.style.display = 'block';
+}
 
 
