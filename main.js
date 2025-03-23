@@ -421,3 +421,72 @@ function initializeSlider() {
       nextSlide();
   }, 5000);
 }
+
+// Next slide
+function nextSlide() {
+  const slides = document.querySelectorAll('.slide');
+  slides[currentSlide].classList.remove('active');
+  currentSlide = (currentSlide + 1) % slides.length;
+  slides[currentSlide].classList.add('active');
+}
+
+// Previous slide
+function prevSlide() {
+  const slides = document.querySelectorAll('.slide');
+  slides[currentSlide].classList.remove('active');
+  currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+  slides[currentSlide].classList.add('active');
+}
+
+// Setup event listeners
+function setupEventListeners() {
+  // Slider navigation
+  document.querySelector('.prev').addEventListener('click', prevSlide);
+  document.querySelector('.next').addEventListener('click', nextSlide);
+
+  // Product card clicks - Fixed to use proper selectors and work for all product types
+  document.addEventListener('click', (e) => {
+      const card = e.target.closest('.product-card');
+      if (card && !e.target.classList.contains('add-to-cart-btn')) {
+          const productId = parseInt(card.dataset.id);
+          showProductModal(productId);
+      }
+  });
+
+    // Add to cart buttons
+    document.addEventListener('click', (e) => {
+      if (e.target.classList.contains('add-to-cart-btn')) {
+          const productId = parseInt(e.target.dataset.id);
+          addToCart(productId);
+          e.target.textContent = 'Added to Cart';
+          e.target.classList.add('added');
+      }
+  });
+
+    // Cart toggle
+    document.getElementById('cart-toggle').addEventListener('click', (e) => {
+      e.preventDefault();
+      toggleCart();
+  });
+
+    // Close modal buttons
+    document.querySelectorAll('.close-modal').forEach(btn => {
+      btn.addEventListener('click', () => {
+          document.getElementById('product-modal').style.display = 'none';
+          document.getElementById('checkout-modal').style.display = 'none';
+      });
+  });
+
+  // Close cart
+  document.querySelector('.close-cart').addEventListener('click', toggleCart);
+
+  // Checkout button
+  document.getElementById('checkout-btn').addEventListener('click', () => {
+      if (cart.length > 0) {
+          openCheckoutModal();
+      }
+  });
+}
+
+
+

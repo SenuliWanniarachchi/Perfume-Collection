@@ -576,3 +576,65 @@ nav {
   padding-top: 1rem;
   border-top: 2px solid #eee;
 }
+
+/* Footer Styles */
+footer {
+  background: #333;
+  color: white;
+  padding: 4rem 0 0 0;
+  margin-top: 4rem;
+}
+
+.footer-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 5%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.footer-section {
+  margin-bottom: 2rem;
+}
+
+.footer-section h3 {
+  color: #d4af37;
+  margin-bottom: 1.5rem;
+  font-size: 1.2rem;
+}
+
+.footer-section ul {
+  list-style: none;
+}
+
+.footer-section ul li {
+  margin-bottom: 0.8rem;
+}
+
+.footer-section a {
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.note-tag,
+.shade-tag,
+.benefit-tag,
+.scent-tag {
+    background: #f0f0f0;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    margin: 0.25rem;
+    display: inline-block;
+}
+
+.modal-details-list {
+    margin-top: 1.5rem;
+}
+
+.modal-details-list h4 {
+    margin-bottom: 1rem;
+    color: #333;
+}
