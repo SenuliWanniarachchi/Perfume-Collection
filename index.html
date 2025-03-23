@@ -200,6 +200,30 @@
                 <button type="submit" class="next-step-btn">Next</button>
             </form>
 
+            <!-- Payment Form -->
+            <form id="payment-form" class="checkout-form">
+                <h3>Payment Information</h3>
+                <div class="form-group">
+                    <input type="text" id="card-number" required placeholder="Card Number">
+                    <div class="card-details">
+                        <input type="text" id="card-expiry" required placeholder="MM/YY">
+                        <input type="text" id="card-cvv" required placeholder="CVV">
+                    </div>
+                    <input type="text" id="card-name" required placeholder="Name on Card">
+                </div>
+                <button type="submit" class="next-step-btn">Next</button>
+            </form>
+
+            <!-- Order Confirmation -->
+            <div id="order-confirmation" class="checkout-form">
+                <h3>Order Summary</h3>
+                <div id="order-details"></div>
+                <button id="place-order-btn" class="next-step-btn">Place Order</button>
+            </div>
+
+
+
+
 
 
 
