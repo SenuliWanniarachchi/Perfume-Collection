@@ -11,7 +11,6 @@ body {
   padding-top: 80px;
 }
 
-
 /* Header Styles */
 header {
   background-color: #fff;
@@ -90,7 +89,6 @@ nav {
   padding: 2px 6px;
   font-size: 0.8rem;
 }
-
 
 /* Hero Section & Slider */
 .slider {
@@ -480,6 +478,28 @@ nav {
 
 .add-to-cart-btn.added {
   background: #28a745;
+}
+
+/* Cart Notification */
+.notification {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  background: #28a745;
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transform: translateY(100px);
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.notification.show {
+  transform: translateY(0);
+  opacity: 1;
 }
 
 /* Checkout Modal */
